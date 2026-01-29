@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // الانتظار 25 ثانية ثم الانتقال
                 setTimeout(() => {
                     window.location.href = 'about.html';
-                }, 25000);
+                }, 50000);
             } else {
                 errorMsg.textContent = '❌ فشل الإرسال، يرجى المحاولة لاحقاً';
                 errorMsg.style.display = 'block';
